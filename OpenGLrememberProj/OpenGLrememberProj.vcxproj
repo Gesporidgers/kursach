@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="shaders\f_frac.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="angle.h" />
@@ -118,6 +119,15 @@
   <ItemGroup>
     <Image Include="OpenGLrememberProj.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\cassini.frag" />
+    <None Include="shaders\f.frag" />
+    <None Include="shaders\frac.frag" />
+    <None Include="shaders\f_gui.frag" />
+    <None Include="shaders\light.frag" />
+    <None Include="shaders\textureShader.frag" />
+    <None Include="shaders\v.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

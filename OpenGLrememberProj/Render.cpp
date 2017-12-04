@@ -223,7 +223,8 @@ int mouseX = 0, mouseY = 0;
 float offsetX = 0, offsetY = 0;
 float zoom=1;
 float Time = 0;
-
+int tick_o = 0;
+int tick_n = 0;
 
 //обработчик движения мыши
 void mouseEvent(OpenGL *ogl, int mX, int mY)
@@ -348,6 +349,28 @@ void keyUpEvent(OpenGL *ogl, int key)
 
 }
 
+
+void DrawQuad()
+{
+	double A[] = { 0,0 };
+	double B[] = { 1,0 };
+	double C[] = { 1,1 };
+	double D[] = { 0,1 };
+	glBegin(GL_QUADS);
+	glColor3d(.5, 0, 0);
+	glNormal3d(0, 0, 1);
+	glTexCoord2d(0, 0);
+	glVertex2dv(A);
+	glTexCoord2d(1, 0);
+	glVertex2dv(B);
+	glTexCoord2d(1, 1);
+	glVertex2dv(C);
+	glTexCoord2d(0, 1);
+	glVertex2dv(D);
+	glEnd();
+}
+
+
 ObjFile objModel,monkey;
 
 Texture monkeyTex;
@@ -431,6 +454,8 @@ void initRender(OpenGL *ogl)
 	monkeyTex.bindTexture();
 
 
+	tick_n = GetTickCount();
+	tick_o = tick_n;
 
 	rec.setSize(300, 100);
 	rec.setPosition(10, ogl->getHeight() - 100-10);
@@ -441,14 +466,13 @@ void initRender(OpenGL *ogl)
 
 
 
-int tick_o=0;
-int tick_n = 0;
+
 void Render(OpenGL *ogl)
 {   
 	
 	tick_o = tick_n;
 	tick_n = GetTickCount();
-	Time += (tick_n - tick_o) / 20;
+	Time += (tick_n - tick_o) / 1000.0;
 
 	/*
 	glMatrixMode(GL_PROJECTION);
@@ -540,7 +564,7 @@ void Render(OpenGL *ogl)
 	
 	//второй, без шейдеров
 	glPushMatrix();
-		glTranslated(0,10,0);
+		glTranslated(-5,15,0);
 		//glScaled(-1.0,1.0,1.0);
 		objModel.DrawObj();
 	glPopMatrix();
@@ -569,73 +593,60 @@ void Render(OpenGL *ogl)
 	/*
 	{
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0,1,0,1,-1,1);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0,1,0,1,-1,1);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 
-	frac.UseShader();
+		frac.UseShader();
 
-	int location = glGetUniformLocationARB(frac.program, "size");
-	glUniform2fARB(location, (GLfloat)ogl->getWidth(), (GLfloat)ogl->getHeight());
+		int location = glGetUniformLocationARB(frac.program, "size");
+		glUniform2fARB(location, (GLfloat)ogl->getWidth(), (GLfloat)ogl->getHeight());
 
-	location = glGetUniformLocationARB(frac.program, "uOffset");
-	glUniform2fARB(location, offsetX, offsetY);
+		location = glGetUniformLocationARB(frac.program, "uOffset");
+		glUniform2fARB(location, offsetX, offsetY);
 
-	location = glGetUniformLocationARB(frac.program, "uZoom");
-	glUniform1fARB(location, zoom);
+		location = glGetUniformLocationARB(frac.program, "uZoom");
+		glUniform1fARB(location, zoom);
 
-	location = glGetUniformLocationARB(frac.program, "Time");
-	glUniform1fARB(location, Time);
+		location = glGetUniformLocationARB(frac.program, "Time");
+		glUniform1fARB(location, Time);
+
+		DrawQuad();
+
 	}
-
 	*/
 	
-
+	
+	//////Овал Кассини
+	
 	/*
 	{
 
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0,1,0,1,-1,1);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0,1,0,1,-1,1);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 
-	cassini.UseShader();
+		cassini.UseShader();
 
-	int location = glGetUniformLocationARB(cassini.program, "size");
-	glUniform2fARB(location, (GLfloat)ogl->getWidth(), (GLfloat)ogl->getHeight());
+		int location = glGetUniformLocationARB(cassini.program, "size");
+		glUniform2fARB(location, (GLfloat)ogl->getWidth(), (GLfloat)ogl->getHeight());
 
 
-	location = glGetUniformLocationARB(cassini.program, "Time");
-	glUniform1fARB(location, Time*0.1);
+		location = glGetUniformLocationARB(cassini.program, "Time");
+		glUniform1fARB(location, Time);
+
+		DrawQuad();
 	}
 
-
-
-	
-	glBegin(GL_QUADS);
-
-	glColor3d(.5, 0, 0);
-
-	glNormal3d(0, 0, 1);
-
-	glTexCoord2d(0, 0);
-	glVertex2dv(A);
-
-	glTexCoord2d(1, 0);
-	glVertex2dv(B);
-
-	glTexCoord2d(1, 1);
-	glVertex2dv(C);
-
-	glTexCoord2d(0, 1);
-	glVertex2dv(D);
-
-	glEnd();
-	
 	*/
+
+	
+	
+	
 
 	
 	Shader::DontUseShaders();

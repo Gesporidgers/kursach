@@ -22,10 +22,10 @@ bool curve(in float x, in float y, in float start, out float r)
 void main( void )
 {
 	
-	vec2 uv = texCoord.xy;///size.xy;
-    uv.x/=size.y/size.x;
+	vec2 uv = texCoord.xy;
+    uv.x*=size.x/size.y;
 
-	//fragColor = 
+
     
     float u = uv.x*2-1*size.x/size.y;
     float v = uv.y*2-1;
@@ -37,7 +37,11 @@ void main( void )
         float r;
     	curve(u,v,t,r);
         float col = 1.0/(r*300.0);
-        gl_FragColor += vec4(col*(sin(t*3.14)+2.0),col*(cos(t*3.14)+2.0),col,1.0)* vec4(uv+Time/100000.0,1.0,0.0);
+        gl_FragColor += vec4(col*(sin(t*3.14)+2.0),
+		                     col*(cos(t*3.14)+2.0),
+							 col,
+							 1.0);
+						//*vec4(uv+Time, 1.0, 1.0);
     }
     
 }
