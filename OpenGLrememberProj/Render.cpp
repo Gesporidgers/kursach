@@ -444,12 +444,13 @@ void initRender(OpenGL *ogl)
 
 	
 
-
-	loadModel("obj\\lpgun6.obj", &objModel);
+	 //так как гит игнорит модели *.obj файлы, так как они совпадают по расширению с объектными файлами, 
+	 // создающимис€ во врем€ компил€ции, € переименовал модели в *.obj_m
+	loadModel("models\\lpgun6.obj_m", &objModel);
 
 
 	glActiveTexture(GL_TEXTURE0);
-	loadModel("obj\\monkey.obj", &monkey);
+	loadModel("models\\monkey.obj_m", &monkey);
 	monkeyTex.loadTextureFromFile("textures//tex.bmp");
 	monkeyTex.bindTexture();
 
