@@ -4,6 +4,7 @@
 #pragma warning( disable : 4305 )
 #pragma warning( disable : 4244 )
 
+#include <string>
 #include <vector>
 #include "MyVector3d.h"
 
@@ -17,7 +18,7 @@
 class OpenGL;
 
 
-//тип для делегата void f (void)
+//ГІГЁГЇ Г¤Г«Гї Г¤ГҐГ«ГҐГЈГ ГІГ  void f (void)
 typedef void(*action)(OpenGL *) ;
 typedef void(*MouseEventDelegate)(OpenGL *,int,int);
 typedef void(*WheelEventDelegate)(OpenGL *, int);
@@ -46,7 +47,7 @@ public:
 
 	
 
-	//функции рендера
+	//ГґГіГ­ГЄГ¶ГЁГЁ Г°ГҐГ­Г¤ГҐГ°Г 
 	std::vector < action > renderFunc;
 
 	//render GUI
@@ -54,7 +55,7 @@ public:
 	action renderGuiFunc;
 	ResizeEventDelegate resizeFunc;
 
-	//функции инициализации
+	//ГґГіГ­ГЄГ¶ГЁГЁ ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГЁ
 	std::vector < action > initFunc;
 	
 	std::vector <MouseEventDelegate>  mouseFunc;
@@ -104,19 +105,19 @@ public:
 	static bool isKeyPressed(int key)
 	{
 		
-		//стандартная функция WinApi для чтения нажатой клавиши
-		//см https://msdn.microsoft.com/ru-ru/library/windows/desktop/ms646293(v=vs.85).aspx
+		//Г±ГІГ Г­Г¤Г Г°ГІГ­Г Гї ГґГіГ­ГЄГ¶ГЁГї WinApi Г¤Г«Гї Г·ГІГҐГ­ГЁГї Г­Г Г¦Г ГІГ®Г© ГЄГ«Г ГўГЁГёГЁ
+		//Г±Г¬ https://msdn.microsoft.com/ru-ru/library/windows/desktop/ms646293(v=vs.85).aspx
 		
 		short state = GetAsyncKeyState(key);
 
 
-		//  0x8000 припереводе из 16ричной  в двоичную давет 1000 0000 0000 0000 .
-		//  операция & совершает побитовое И над операндами.    Таким образом после нее остется первый бит (0 или 1),
-		//  в нем и содержится информация о там нажата ли клавиша
+		//  0x8000 ГЇГ°ГЁГЇГҐГ°ГҐГўГ®Г¤ГҐ ГЁГ§ 16Г°ГЁГ·Г­Г®Г©  Гў Г¤ГўГ®ГЁГ·Г­ГіГѕ Г¤Г ГўГҐГІ 1000 0000 0000 0000 .
+		//  Г®ГЇГҐГ°Г Г¶ГЁГї & Г±Г®ГўГҐГ°ГёГ ГҐГІ ГЇГ®ГЎГЁГІГ®ГўГ®ГҐ Г€ Г­Г Г¤ Г®ГЇГҐГ°Г Г­Г¤Г Г¬ГЁ.    Г’Г ГЄГЁГ¬ Г®ГЎГ°Г Г§Г®Г¬ ГЇГ®Г±Г«ГҐ Г­ГҐГҐ Г®Г±ГІГҐГІГ±Гї ГЇГҐГ°ГўГ»Г© ГЎГЁГІ (0 ГЁГ«ГЁ 1),
+		//  Гў Г­ГҐГ¬ ГЁ Г±Г®Г¤ГҐГ°Г¦ГЁГІГ±Гї ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГї Г® ГІГ Г¬ Г­Г Г¦Г ГІГ  Г«ГЁ ГЄГ«Г ГўГЁГёГ 
 		return static_cast<bool>(state & 0x8000);
 	}
 
-	//загрузка BMP из файла,
+	//Г§Г ГЈГ°ГіГ§ГЄГ  BMP ГЁГ§ ГґГ Г©Г«Г ,
 	
 	
 	static void drawSphere()
