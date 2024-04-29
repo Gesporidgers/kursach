@@ -530,45 +530,7 @@ void Render(OpenGL *ogl)
 
 	s[0].UseShader();
 
-	//передача параметров в шейдер.  Шаг один - ищем адрес uniform переменной по ее имени. 
-	int location = glGetUniformLocationARB(s[0].program, "light_pos");
-	//Шаг 2 - передаем ей значение
-	glUniform3fARB(location, light.pos.X(), light.pos.Y(),light.pos.Z());
-
-	location = glGetUniformLocationARB(s[0].program, "Ia");
-	glUniform3fARB(location, 0.2, 0.2, 0.2);
-
-	location = glGetUniformLocationARB(s[0].program, "Id");
-	glUniform3fARB(location, 1.0, 1.0, 1.0);
-
-	location = glGetUniformLocationARB(s[0].program, "Is");
-	glUniform3fARB(location, .7, .7, .7);
-
-
-	location = glGetUniformLocationARB(s[0].program, "ma");
-	glUniform3fARB(location, 0.2, 0.2, 0.1);
-
-	location = glGetUniformLocationARB(s[0].program, "md");
-	glUniform3fARB(location, 0.4, 0.65, 0.5);
-
-	location = glGetUniformLocationARB(s[0].program, "ms");
-	glUniform4fARB(location, 0.9, 0.8, 0.3, 25.6);
-
-	location = glGetUniformLocationARB(s[0].program, "camera");
-	glUniform3fARB(location, camera.pos.X(), camera.pos.Y(), camera.pos.Z());
-
-	//первый пистолет
-	objModel.DrawObj();
-
-
-	Shader::DontUseShaders();
 	
-	//второй, без шейдеров
-	glPushMatrix();
-		glTranslated(-5,15,0);
-		//glScaled(-1.0,1.0,1.0);
-		objModel.DrawObj();
-	glPopMatrix();
 
 
 
