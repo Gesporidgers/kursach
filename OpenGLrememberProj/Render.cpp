@@ -438,7 +438,7 @@ void initRender(OpenGL *ogl)
 	s[0].Compile(); //компилируем
 
 	s[1].VshaderFileName = "shaders\\v.vert"; //имя файла вершинного шейдер
-	s[1].FshaderFileName = "shaders\\textureShader.frag"; //имя файла фрагментного шейдера
+	s[1].FshaderFileName = "shaders\\texture_LightShader.frag"; //имя файла фрагментного шейдера
 	s[1].LoadShaderFromFile(); //загружаем шейдеры из файла
 	s[1].Compile(); //компилируем
 
@@ -575,8 +575,34 @@ void Render(OpenGL *ogl)
 	//обезьяна
 
 	s[1].UseShader();
-	int l = glGetUniformLocationARB(s[1].program,"tex"); 
-	glUniform1iARB(l, 0);     //так как когда мы загружали текстуру грузили на GL_TEXTURE0
+	int l = glGetUniformLocationARB(s[1].program,"tex");
+	glUniform1iARB(l, 0); 
+	int location2 = glGetUniformLocationARB(s[1].program, "light_pos");
+	//Шаг 2 - передаем ей значение
+	glUniform3fARB(location2, light.pos.X(), light.pos.Y(), light.pos.Z());
+
+	location2 = glGetUniformLocationARB(s[1].program, "Ia");
+	glUniform3fARB(location2, 0.2, 0.2, 0.2);
+
+	location2 = glGetUniformLocationARB(s[1].program, "Id");
+	glUniform3fARB(location2, 1.0, 1.0, 1.0);
+
+	location2 = glGetUniformLocationARB(s[1].program, "Is");
+	glUniform3fARB(location2, .7, .7, .7);
+
+
+	location2 = glGetUniformLocationARB(s[1].program, "ma");
+	glUniform3fARB(location2, 0.2, 0.2, 0.1);
+
+	location2 = glGetUniformLocationARB(s[1].program, "md");
+	glUniform3fARB(location2, 0.4, 0.65, 0.5);
+
+	location2 = glGetUniformLocationARB(s[1].program, "ms");
+	glUniform4fARB(location2, 0.9, 0.8, 0.3, 25.6);
+
+	location2 = glGetUniformLocationARB(s[1].program, "camera");
+	glUniform3fARB(location2, camera.pos.X(), camera.pos.Y(), camera.pos.Z());
+	    //так как когда мы загружали текстуру грузили на GL_TEXTURE0
 	glPushMatrix();
 	glRotated(-90, 0, 0, 1);
 	monkeyTex.bindTexture();
