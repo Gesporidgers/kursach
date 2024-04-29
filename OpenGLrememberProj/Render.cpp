@@ -371,7 +371,7 @@ void DrawQuad()
 }
 
 
-ObjFile objModel,monkey;
+ObjFile objModel,car;
 
 Texture monkeyTex;
 
@@ -450,7 +450,7 @@ void initRender(OpenGL *ogl)
 
 
 	glActiveTexture(GL_TEXTURE0);
-	loadModel("models\\monkey.obj_m", &monkey);
+	loadModel("models\\ferrari.obj_m", &car);
 	monkeyTex.loadTextureFromFile("textures//tex.bmp");
 	monkeyTex.bindTexture();
 
@@ -606,7 +606,7 @@ void Render(OpenGL *ogl)
 	glPushMatrix();
 	glRotated(-90, 0, 0, 1);
 	monkeyTex.bindTexture();
-	monkey.DrawObj();
+	car.DrawObj();
 	glPopMatrix();
 
 

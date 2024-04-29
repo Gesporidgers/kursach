@@ -26,7 +26,7 @@ void main(void)
 	vec3 color_amb = Ia*ma;
 	
 	vec3 light_vector = normalize(light_pos-Position);
-	vec3 color_dif = Id*tex_vec*dot( light_vector,Normal  );
+	vec3 color_dif = Id*md*dot( light_vector,Normal  );
 	
 	vec3 view_vector = normalize(camera - Position);
 	vec3 r = reflect(light_vector,Normal);
