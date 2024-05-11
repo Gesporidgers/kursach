@@ -371,7 +371,7 @@ void DrawQuad()
 }
 
 
-ObjFile objModel,car;
+ObjFile objModel,car,plane;
 
 Texture monkeyTex;
 
@@ -450,7 +450,8 @@ void initRender(OpenGL *ogl)
 
 
 	glActiveTexture(GL_TEXTURE0);
-	loadModel("models\\ferrari.obj_m", &car);
+	loadModel("models\\car.obj_m", &car);
+	loadModel("models\\plane.obj_m",&plane);
 	monkeyTex.loadTextureFromFile("textures//tex.bmp");
 	monkeyTex.bindTexture();
 
@@ -566,11 +567,12 @@ void Render(OpenGL *ogl)
 	glUniform3fARB(location2, camera.pos.X(), camera.pos.Y(), camera.pos.Z());
 	    //так как когда мы загружали текстуру грузили на GL_TEXTURE0
 	glPushMatrix();
-	glRotated(-90, 0, 0, 1);
-	monkeyTex.bindTexture();
+	//glRotated(-90, 0, 0, 1);
+	//monkeyTex.bindTexture();
 	car.DrawObj();
 	glPopMatrix();
-
+	plane.DrawObj();
+	glPopMatrix();
 
 
 	
