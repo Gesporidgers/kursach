@@ -526,8 +526,12 @@ void Render(OpenGL *ogl)
 	//
 
 
+	double moveX = Time; double  plane1_X = 0, plane2_X = 0;
+	plane1_X += moveX;
+	plane2_X += moveX-24;
 
-
+	if (plane1_X > 15)
+		plane1_X += plane2_X*2;
 
 	s[0].UseShader();
 
@@ -569,12 +573,21 @@ void Render(OpenGL *ogl)
 	glPushMatrix();
 	//glRotated(-90, 0, 0, 1);
 	//monkeyTex.bindTexture();
+
+	
+
 	car.DrawObj();
 	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(plane1_X, 0, 0);
 	plane.DrawObj();
 	glPopMatrix();
 
-
+	glPushMatrix();
+	glTranslated(plane2_X, 0, 0);
+	plane.DrawObj();
+	glPopMatrix();
 	
 	
 
