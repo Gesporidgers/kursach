@@ -140,7 +140,7 @@ public:
 	CustomLight()
 	{
 		//начальная позиция света
-		pos = Vector3(1, 1, 3);
+		pos = Vector3(-24, 0, 8);
 	}
 
 	
@@ -191,10 +191,10 @@ public:
 
 	void SetUpLight()
 	{
-		GLfloat amb[] = { 0.2, 0.2, 0.2, 0 };
+		GLfloat amb[] = { 0.5, 0.5, 0.5, 0 };
 		GLfloat dif[] = { 1.0, 1.0, 1.0, 0 };
-		GLfloat spec[] = { .7, .7, .7, 0 };
-		GLfloat position[] = { pos.X(), pos.Y(), pos.Z(), 1. };
+		GLfloat spec[] = { 1., 1., 1., 0 };
+		GLfloat position[] = { pos.X(),pos.Y() , pos.Z(), 1.};
 
 		// параметры источника света
 		glLightfv(GL_LIGHT0, GL_POSITION, position);
@@ -373,7 +373,7 @@ void DrawQuad()
 
 ObjFile objModel,car,plane;
 
-Texture monkeyTex;
+Texture carTexture,sythwave;
 
 //выполняется перед первым рендером
 void initRender(OpenGL *ogl)
@@ -452,9 +452,10 @@ void initRender(OpenGL *ogl)
 	glActiveTexture(GL_TEXTURE0);
 	loadModel("models\\car.obj_m", &car);
 	loadModel("models\\plane.obj_m",&plane);
-	monkeyTex.loadTextureFromFile("textures//tex.bmp");
-	monkeyTex.bindTexture();
+	carTexture.loadTextureFromFile("textures//tex.bmp");
+	
 
+	sythwave.loadTextureFromFile("textures//synthwave_grid.bmp");
 
 	tick_n = GetTickCount();
 	tick_o = tick_n;
@@ -466,7 +467,7 @@ void initRender(OpenGL *ogl)
 	
 }
 
-double  plane1_X = 0, plane2_X = -24;
+double  plane1_X = 0, plane2_X = -24, plane3_X = -48;
 
 
 void Render(OpenGL *ogl)
@@ -487,6 +488,7 @@ void Render(OpenGL *ogl)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
 
@@ -505,10 +507,10 @@ void Render(OpenGL *ogl)
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//настройка материала
-	GLfloat amb[] = { 0.2, 0.2, 0.1, 1. };
-	GLfloat dif[] = { 0.4, 0.65, 0.5, 1. };
+	GLfloat amb[] = { 0.5, 0.5, 0.5, 1. };
+	GLfloat dif[] = { 0.4, 0.6, 0.5, 1. };
 	GLfloat spec[] = { 0.9, 0.8, 0.3, 1. };
-	GLfloat sh = 0.1f * 256;
+	GLfloat sh = 0.8f * 256;
 
 	//фоновая
 	glMaterialfv(GL_FRONT, GL_AMBIENT, amb);
@@ -529,27 +531,36 @@ void Render(OpenGL *ogl)
 	
 	plane1_X += 0.05;
 	plane2_X += 0.05;
+	plane3_X += 0.05;
 
-	if (plane1_X > 15)
-		plane1_X -= 48;
+	if (plane1_X > 30)
+		plane1_X -= 72;
+	if (plane2_X > 30)
+		plane2_X -= 72;
+	if (plane3_X > 30)
+		plane3_X -= 72;
 
 	Shader::DontUseShaders();	//ландшафт движущийся
+	//glActiveTexture(GL_TEXTURE1);
+	
 
-
-
+	sythwave.bindTexture();
 	glPushMatrix();
 	glTranslated(plane1_X, 0, 0);
 	plane.DrawObj();
 	glPopMatrix();
-
+	
 	glPushMatrix();
 	glTranslated(plane2_X, 0, 0);
 	plane.DrawObj();
 	glPopMatrix();
 
+	glPushMatrix();
+	glTranslated(plane3_X, 0, 0);
+	plane.DrawObj();
+	glPopMatrix();
+	//glActiveTexture(GL_TEXTURE0);
 	
-
-
 
 	//машина
 
@@ -584,7 +595,7 @@ void Render(OpenGL *ogl)
 	    //так как когда мы загружали текстуру грузили на GL_TEXTURE0
 	glPushMatrix();
 	//glRotated(-90, 0, 0, 1);
-	monkeyTex.bindTexture();
+	carTexture.bindTexture();
 
 	
 
