@@ -466,7 +466,7 @@ void initRender(OpenGL *ogl)
 	
 }
 
-
+double  plane1_X = 0, plane2_X = -24;
 
 
 void Render(OpenGL *ogl)
@@ -526,20 +526,32 @@ void Render(OpenGL *ogl)
 	//
 
 
-	double moveX = Time; double  plane1_X = 0, plane2_X = 0;
-	plane1_X += moveX;
-	plane2_X += moveX-24;
+	
+	plane1_X += 0.05;
+	plane2_X += 0.05;
 
 	if (plane1_X > 15)
-		plane1_X += plane2_X*2;
+		plane1_X -= 48;
 
-	s[0].UseShader();
+	Shader::DontUseShaders();	//ландшафт движущийся
+
+
+
+	glPushMatrix();
+	glTranslated(plane1_X, 0, 0);
+	plane.DrawObj();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(plane2_X, 0, 0);
+	plane.DrawObj();
+	glPopMatrix();
 
 	
 
 
 
-	//обезьяна
+	//машина
 
 	s[1].UseShader();
 	int l = glGetUniformLocationARB(s[1].program,"tex");
@@ -572,22 +584,14 @@ void Render(OpenGL *ogl)
 	    //так как когда мы загружали текстуру грузили на GL_TEXTURE0
 	glPushMatrix();
 	//glRotated(-90, 0, 0, 1);
-	//monkeyTex.bindTexture();
+	monkeyTex.bindTexture();
 
 	
 
 	car.DrawObj();
 	glPopMatrix();
 
-	glPushMatrix();
-	glTranslated(plane1_X, 0, 0);
-	plane.DrawObj();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslated(plane2_X, 0, 0);
-	plane.DrawObj();
-	glPopMatrix();
+	
 	
 	
 
