@@ -41,8 +41,6 @@ Texture rTex;
 Texture tBox;
 
 Shader s[10];  //ìàññèâ÷èê äëÿ äåñÿòè øåéäåðîâ
-Shader frac;
-Shader cassini;
 
 
 
@@ -461,13 +459,6 @@ void Render(OpenGL *ogl)
 	tick_n = GetTickCount();
 	Time += (tick_n - tick_o) / 1000.0;
 
-	/*
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0, 1, 0, 1, -1, 1);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	*/
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -476,8 +467,6 @@ void Render(OpenGL *ogl)
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
 
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
 
 	glEnable(GL_DEPTH_TEST);
 	if (textureMode)
@@ -590,63 +579,7 @@ void Render(OpenGL *ogl)
 	
 	
 
-	//////Ðèñîâàíèå ôðàêòàëà
-
 	
-	/*
-	{
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0,1,0,1,-1,1);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-
-		frac.UseShader();
-
-		int location = glGetUniformLocationARB(frac.program, "size");
-		glUniform2fARB(location, (GLfloat)ogl->getWidth(), (GLfloat)ogl->getHeight());
-
-		location = glGetUniformLocationARB(frac.program, "uOffset");
-		glUniform2fARB(location, offsetX, offsetY);
-
-		location = glGetUniformLocationARB(frac.program, "uZoom");
-		glUniform1fARB(location, zoom);
-
-		location = glGetUniformLocationARB(frac.program, "Time");
-		glUniform1fARB(location, Time);
-
-		DrawQuad();
-
-	}
-	*/
-	
-	
-	//////Îâàë Êàññèíè
-	
-	/*
-	{
-
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0,1,0,1,-1,1);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-
-		cassini.UseShader();
-
-		int location = glGetUniformLocationARB(cassini.program, "size");
-		glUniform2fARB(location, (GLfloat)ogl->getWidth(), (GLfloat)ogl->getHeight());
-
-
-		location = glGetUniformLocationARB(cassini.program, "Time");
-		glUniform1fARB(location, Time);
-
-		DrawQuad();
-	}
-
-	*/
-
 	
 	
 	
