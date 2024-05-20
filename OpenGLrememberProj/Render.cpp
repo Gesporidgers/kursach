@@ -28,7 +28,7 @@ bool textureMode = true;
 bool lightMode = true;
 
 
-//небольшой дефайн для упрощения кода
+//Г­ГҐГЎГ®Г«ГјГёГ®Г© Г¤ГҐГґГ Г©Г­ Г¤Г«Гї ГіГЇГ°Г®Г№ГҐГ­ГЁГї ГЄГ®Г¤Г 
 #define POP glPopMatrix()
 #define PUSH glPushMatrix()
 
@@ -40,24 +40,24 @@ Texture sTex;
 Texture rTex;
 Texture tBox;
 
-Shader s[10];  //массивчик для десяти шейдеров
+Shader s[10];  //Г¬Г Г±Г±ГЁГўГ·ГЁГЄ Г¤Г«Гї Г¤ГҐГ±ГїГІГЁ ГёГҐГ©Г¤ГҐГ°Г®Гў
 Shader frac;
 Shader cassini;
 
 
 
 
-//класс для настройки камеры
+//ГЄГ«Г Г±Г± Г¤Г«Гї Г­Г Г±ГІГ°Г®Г©ГЄГЁ ГЄГ Г¬ГҐГ°Г»
 class CustomCamera : public Camera
 {
 public:
-	//дистанция камеры
+	//Г¤ГЁГ±ГІГ Г­Г¶ГЁГї ГЄГ Г¬ГҐГ°Г»
 	double camDist;
-	//углы поворота камеры
+	//ГіГЈГ«Г» ГЇГ®ГўГ®Г°Г®ГІГ  ГЄГ Г¬ГҐГ°Г»
 	double fi1, fi2;
 
 	
-	//значния масеры по умолчанию
+	//Г§Г­Г Г·Г­ГЁГї Г¬Г Г±ГҐГ°Г» ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ
 	CustomCamera()
 	{
 		camDist = 15;
@@ -66,7 +66,7 @@ public:
 	}
 
 	
-	//считает позицию камеры, исходя из углов поворота, вызывается движком
+	//Г±Г·ГЁГІГ ГҐГІ ГЇГ®Г§ГЁГ¶ГЁГѕ ГЄГ Г¬ГҐГ°Г», ГЁГ±ГµГ®Г¤Гї ГЁГ§ ГіГЈГ«Г®Гў ГЇГ®ГўГ®Г°Г®ГІГ , ГўГ»Г§Г»ГўГ ГҐГІГ±Гї Г¤ГўГЁГ¦ГЄГ®Г¬
 	virtual void SetUpCamera()
 	{
 
@@ -91,10 +91,10 @@ public:
 
 
 
-}  camera;   //создаем объект камеры
+}  camera;   //Г±Г®Г§Г¤Г ГҐГ¬ Г®ГЎГєГҐГЄГІ ГЄГ Г¬ГҐГ°Г»
 
 
-//класс недоделан!
+//ГЄГ«Г Г±Г± Г­ГҐГ¤Г®Г¤ГҐГ«Г Г­!
 class WASDcamera :public CustomCamera
 {
 public:
@@ -133,18 +133,18 @@ public:
 } WASDcam;
 
 
-//Класс для настройки света
+//ГЉГ«Г Г±Г± Г¤Г«Гї Г­Г Г±ГІГ°Г®Г©ГЄГЁ Г±ГўГҐГІГ 
 class CustomLight : public Light
 {
 public:
 	CustomLight()
 	{
-		//начальная позиция света
+		//Г­Г Г·Г Г«ГјГ­Г Гї ГЇГ®Г§ГЁГ¶ГЁГї Г±ГўГҐГІГ 
 		pos = Vector3(-24, 0, 8);
 	}
 
 	
-	//рисует сферу и линии под источником света, вызывается движком
+	//Г°ГЁГ±ГіГҐГІ Г±ГґГҐГ°Гі ГЁ Г«ГЁГ­ГЁГЁ ГЇГ®Г¤ ГЁГ±ГІГ®Г·Г­ГЁГЄГ®Г¬ Г±ГўГҐГІГ , ГўГ»Г§Г»ГўГ ГҐГІГ±Гї Г¤ГўГЁГ¦ГЄГ®Г¬
 	void  DrawLightGhismo()
 	{
 		
@@ -167,13 +167,13 @@ public:
 		if (OpenGL::isKeyPressed('G'))
 		{
 			glColor3d(0, 0, 0);
-			//линия от источника света до окружности
+			//Г«ГЁГ­ГЁГї Г®ГІ ГЁГ±ГІГ®Г·Г­ГЁГЄГ  Г±ГўГҐГІГ  Г¤Г® Г®ГЄГ°ГіГ¦Г­Г®Г±ГІГЁ
 				glBegin(GL_LINES);
 			glVertex3d(pos.X(), pos.Y(), pos.Z());
 			glVertex3d(pos.X(), pos.Y(), 0);
 			glEnd();
 
-			//рисуем окруность
+			//Г°ГЁГ±ГіГҐГ¬ Г®ГЄГ°ГіГ­Г®Г±ГІГј
 			Circle c;
 			c.pos.setCoords(pos.X(), pos.Y(), 0);
 			c.scale = c.scale*1.5;
@@ -196,25 +196,25 @@ public:
 		GLfloat spec[] = { 1., 1., 1., 0 };
 		GLfloat position[] = { pos.X(),pos.Y() , pos.Z(), 1.};
 
-		// параметры источника света
+		// ГЇГ Г°Г Г¬ГҐГІГ°Г» ГЁГ±ГІГ®Г·Г­ГЁГЄГ  Г±ГўГҐГІГ 
 		glLightfv(GL_LIGHT0, GL_POSITION, position);
-		// характеристики излучаемого света
-		// фоновое освещение (рассеянный свет)
+		// ГµГ Г°Г ГЄГІГҐГ°ГЁГ±ГІГЁГЄГЁ ГЁГ§Г«ГіГ·Г ГҐГ¬Г®ГЈГ® Г±ГўГҐГІГ 
+		// ГґГ®Г­Г®ГўГ®ГҐ Г®Г±ГўГҐГ№ГҐГ­ГЁГҐ (Г°Г Г±Г±ГҐГїГ­Г­Г»Г© Г±ГўГҐГІ)
 		glLightfv(GL_LIGHT0, GL_AMBIENT, amb);
-		// диффузная составляющая света
+		// Г¤ГЁГґГґГіГ§Г­Г Гї Г±Г®Г±ГІГ ГўГ«ГїГѕГ№Г Гї Г±ГўГҐГІГ 
 		glLightfv(GL_LIGHT0, GL_DIFFUSE, dif);
-		// зеркально отражаемая составляющая света
+		// Г§ГҐГ°ГЄГ Г«ГјГ­Г® Г®ГІГ°Г Г¦Г ГҐГ¬Г Гї Г±Г®Г±ГІГ ГўГ«ГїГѕГ№Г Гї Г±ГўГҐГІГ 
 		glLightfv(GL_LIGHT0, GL_SPECULAR, spec);
 
 		glEnable(GL_LIGHT0);
 	}
 
 
-} light;  //создаем источник света
+} light;  //Г±Г®Г§Г¤Г ГҐГ¬ ГЁГ±ГІГ®Г·Г­ГЁГЄ Г±ГўГҐГІГ 
 
 
 
-//старые координаты мыши
+//Г±ГІГ Г°Г»ГҐ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ» Г¬Г»ГёГЁ
 int mouseX = 0, mouseY = 0;
 
 
@@ -226,7 +226,7 @@ float Time = 0;
 int tick_o = 0;
 int tick_n = 0;
 
-//обработчик движения мыши
+//Г®ГЎГ°Г ГЎГ®ГІГ·ГЁГЄ Г¤ГўГЁГ¦ГҐГ­ГЁГї Г¬Г»ГёГЁ
 void mouseEvent(OpenGL *ogl, int mX, int mY)
 {
 	int dx = mouseX - mX;
@@ -234,7 +234,7 @@ void mouseEvent(OpenGL *ogl, int mX, int mY)
 	mouseX = mX;
 	mouseY = mY;
 
-	//меняем углы камеры при нажатой левой кнопке мыши
+	//Г¬ГҐГ­ГїГҐГ¬ ГіГЈГ«Г» ГЄГ Г¬ГҐГ°Г» ГЇГ°ГЁ Г­Г Г¦Г ГІГ®Г© Г«ГҐГўГ®Г© ГЄГ­Г®ГЇГЄГҐ Г¬Г»ГёГЁ
 	if (OpenGL::isKeyPressed(VK_RBUTTON))
 	{
 		camera.fi1 += 0.01*dx;
@@ -250,7 +250,7 @@ void mouseEvent(OpenGL *ogl, int mX, int mY)
 
 
 	
-	//двигаем свет по плоскости, в точку где мышь
+	//Г¤ГўГЁГЈГ ГҐГ¬ Г±ГўГҐГІ ГЇГ® ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ, Гў ГІГ®Г·ГЄГі ГЈГ¤ГҐ Г¬Г»ГёГј
 	if (OpenGL::isKeyPressed('G') && !OpenGL::isKeyPressed(VK_LBUTTON))
 	{
 		LPPOINT POINT = new tagPOINT();
@@ -282,7 +282,7 @@ void mouseEvent(OpenGL *ogl, int mX, int mY)
 	
 }
 
-//обработчик вращения колеса  мыши
+//Г®ГЎГ°Г ГЎГ®ГІГ·ГЁГЄ ГўГ°Г Г№ГҐГ­ГЁГї ГЄГ®Г«ГҐГ±Г   Г¬Г»ГёГЁ
 void mouseWheelEvent(OpenGL *ogl, int delta)
 {
 
@@ -301,7 +301,7 @@ void mouseWheelEvent(OpenGL *ogl, int delta)
 	camera.camDist += 0.01*delta;
 }
 
-//обработчик нажатия кнопок клавиатуры
+//Г®ГЎГ°Г ГЎГ®ГІГ·ГЁГЄ Г­Г Г¦Г ГІГЁГї ГЄГ­Г®ГЇГ®ГЄ ГЄГ«Г ГўГЁГ ГІГіГ°Г»
 void keyDownEvent(OpenGL *ogl, int key)
 {
 	if (key == 'L')
@@ -371,83 +371,67 @@ void DrawQuad()
 }
 
 
-ObjFile objModel,car,plane;
+ObjFile car,plane;
 
 Texture carTexture,sythwave;
 
-//выполняется перед первым рендером
+//ГўГ»ГЇГ®Г«Г­ГїГҐГІГ±Гї ГЇГҐГ°ГҐГ¤ ГЇГҐГ°ГўГ»Г¬ Г°ГҐГ­Г¤ГҐГ°Г®Г¬
 void initRender(OpenGL *ogl)
 {
 
-	//настройка текстур
+	//Г­Г Г±ГІГ°Г®Г©ГЄГ  ГІГҐГЄГ±ГІГіГ°
 
-	//4 байта на хранение пикселя
+	//4 ГЎГ Г©ГІГ  Г­Г  ГµГ°Г Г­ГҐГ­ГЁГҐ ГЇГЁГЄГ±ГҐГ«Гї
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 
-	//настройка режима наложения текстур
+	//Г­Г Г±ГІГ°Г®Г©ГЄГ  Г°ГҐГ¦ГЁГ¬Г  Г­Г Г«Г®Г¦ГҐГ­ГЁГї ГІГҐГЄГ±ГІГіГ°
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-	//включаем текстуры
+	//ГўГЄГ«ГѕГ·Г ГҐГ¬ ГІГҐГЄГ±ГІГіГ°Г»
 	glEnable(GL_TEXTURE_2D);
 	
 	
 
 
-	//камеру и свет привязываем к "движку"
+	//ГЄГ Г¬ГҐГ°Гі ГЁ Г±ГўГҐГІ ГЇГ°ГЁГўГїГ§Г»ГўГ ГҐГ¬ ГЄ "Г¤ГўГЁГ¦ГЄГі"
 	ogl->mainCamera = &camera;
 	//ogl->mainCamera = &WASDcam;
 	ogl->mainLight = &light;
 
-	// нормализация нормалей : их длины будет равна 1
+	// Г­Г®Г°Г¬Г Г«ГЁГ§Г Г¶ГЁГї Г­Г®Г°Г¬Г Г«ГҐГ© : ГЁГµ Г¤Г«ГЁГ­Г» ГЎГіГ¤ГҐГІ Г°Г ГўГ­Г  1
 	glEnable(GL_NORMALIZE);
 
-	// устранение ступенчатости для линий
+	// ГіГ±ГІГ°Г Г­ГҐГ­ГЁГҐ Г±ГІГіГЇГҐГ­Г·Г ГІГ®Г±ГІГЁ Г¤Г«Гї Г«ГЁГ­ГЁГ©
 	glEnable(GL_LINE_SMOOTH); 
 
 
-	//   задать параметры освещения
-	//  параметр GL_LIGHT_MODEL_TWO_SIDE - 
-	//                0 -  лицевые и изнаночные рисуются одинаково(по умолчанию), 
-	//                1 - лицевые и изнаночные обрабатываются разными режимами       
-	//                соответственно лицевым и изнаночным свойствам материалов.    
-	//  параметр GL_LIGHT_MODEL_AMBIENT - задать фоновое освещение, 
-	//                не зависящее от сточников
-	// по умолчанию (0.2, 0.2, 0.2, 1.0)
+	//   Г§Г Г¤Г ГІГј ГЇГ Г°Г Г¬ГҐГІГ°Г» Г®Г±ГўГҐГ№ГҐГ­ГЁГї
+	//  ГЇГ Г°Г Г¬ГҐГІГ° GL_LIGHT_MODEL_TWO_SIDE - 
+	//                0 -  Г«ГЁГ¶ГҐГўГ»ГҐ ГЁ ГЁГ§Г­Г Г­Г®Г·Г­Г»ГҐ Г°ГЁГ±ГіГѕГІГ±Гї Г®Г¤ГЁГ­Г ГЄГ®ГўГ®(ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ), 
+	//                1 - Г«ГЁГ¶ГҐГўГ»ГҐ ГЁ ГЁГ§Г­Г Г­Г®Г·Г­Г»ГҐ Г®ГЎГ°Г ГЎГ ГІГ»ГўГ ГѕГІГ±Гї Г°Г Г§Г­Г»Г¬ГЁ Г°ГҐГ¦ГЁГ¬Г Г¬ГЁ       
+	//                Г±Г®Г®ГІГўГҐГІГ±ГІГўГҐГ­Г­Г® Г«ГЁГ¶ГҐГўГ»Г¬ ГЁ ГЁГ§Г­Г Г­Г®Г·Г­Г»Г¬ Г±ГўГ®Г©Г±ГІГўГ Г¬ Г¬Г ГІГҐГ°ГЁГ Г«Г®Гў.    
+	//  ГЇГ Г°Г Г¬ГҐГІГ° GL_LIGHT_MODEL_AMBIENT - Г§Г Г¤Г ГІГј ГґГ®Г­Г®ГўГ®ГҐ Г®Г±ГўГҐГ№ГҐГ­ГЁГҐ, 
+	//                Г­ГҐ Г§Г ГўГЁГ±ГїГ№ГҐГҐ Г®ГІ Г±ГІГ®Г·Г­ГЁГЄГ®Гў
+	// ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ (0.2, 0.2, 0.2, 1.0)
 
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
 
 	/*
-	//texture1.loadTextureFromFile("textures\\texture.bmp");   загрузка текстуры из файла
-	*/
-
-
-	frac.VshaderFileName = "shaders\\v.vert"; //имя файла вершинного шейдер
-	frac.FshaderFileName = "shaders\\frac.frag"; //имя файла фрагментного шейдера
-	frac.LoadShaderFromFile(); //загружаем шейдеры из файла
-	frac.Compile(); //компилируем
-
-	cassini.VshaderFileName = "shaders\\v.vert"; //имя файла вершинного шейдер
-	cassini.FshaderFileName = "shaders\\cassini.frag"; //имя файла фрагментного шейдера
-	cassini.LoadShaderFromFile(); //загружаем шейдеры из файла
-	cassini.Compile(); //компилируем
-	
-
-	s[0].VshaderFileName = "shaders\\v.vert"; //имя файла вершинного шейдер
-	s[0].FshaderFileName = "shaders\\light.frag"; //имя файла фрагментного шейдера
-	s[0].LoadShaderFromFile(); //загружаем шейдеры из файла
-	s[0].Compile(); //компилируем
-
-	s[1].VshaderFileName = "shaders\\v.vert"; //имя файла вершинного шейдер
-	s[1].FshaderFileName = "shaders\\texture_LightShader.frag"; //имя файла фрагментного шейдера
-	s[1].LoadShaderFromFile(); //загружаем шейдеры из файла
-	s[1].Compile(); //компилируем
+	//texture1.loadTextureFromFile("textures\\texture.bmp"); 
 
 	
 
-	 //так как гит игнорит модели *.obj файлы, так как они совпадают по расширению с объектными файлами, 
-	 // создающимися во время компиляции, я переименовал модели в *.obj_m
-	loadModel("models\\lpgun6.obj_m", &objModel);
+	s[0].VshaderFileName = "shaders\\v.vert"; //ГЁГ¬Гї ГґГ Г©Г«Г  ГўГҐГ°ГёГЁГ­Г­Г®ГЈГ® ГёГҐГ©Г¤ГҐГ°
+	s[0].FshaderFileName = "shaders\\light.frag"; //ГЁГ¬Гї ГґГ Г©Г«Г  ГґГ°Г ГЈГ¬ГҐГ­ГІГ­Г®ГЈГ® ГёГҐГ©Г¤ГҐГ°Г 
+	s[0].LoadShaderFromFile(); //Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГёГҐГ©Г¤ГҐГ°Г» ГЁГ§ ГґГ Г©Г«Г 
+	s[0].Compile(); //ГЄГ®Г¬ГЇГЁГ«ГЁГ°ГіГҐГ¬
 
+	s[1].VshaderFileName = "shaders\\v.vert"; //ГЁГ¬Гї ГґГ Г©Г«Г  ГўГҐГ°ГёГЁГ­Г­Г®ГЈГ® ГёГҐГ©Г¤ГҐГ°
+	s[1].FshaderFileName = "shaders\\texture_LightShader.frag"; //ГЁГ¬Гї ГґГ Г©Г«Г  ГґГ°Г ГЈГ¬ГҐГ­ГІГ­Г®ГЈГ® ГёГҐГ©Г¤ГҐГ°Г 
+	s[1].LoadShaderFromFile(); //Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГёГҐГ©Г¤ГҐГ°Г» ГЁГ§ ГґГ Г©Г«Г 
+	s[1].Compile(); //ГЄГ®Г¬ГЇГЁГ«ГЁГ°ГіГҐГ¬
+
+	
 
 	glActiveTexture(GL_TEXTURE0);
 	loadModel("models\\car.obj_m", &car);
@@ -462,7 +446,7 @@ void initRender(OpenGL *ogl)
 
 	rec.setSize(300, 100);
 	rec.setPosition(10, ogl->getHeight() - 100-10);
-	rec.setText("T - вкл/выкл текстур\nL - вкл/выкл освещение\nF - Свет из камеры\nG - двигать свет по горизонтали\nG+ЛКМ двигать свет по вертекали",0,0,0);
+	rec.setText("T - ГўГЄГ«/ГўГ»ГЄГ« ГІГҐГЄГ±ГІГіГ°\nL - ГўГЄГ«/ГўГ»ГЄГ« Г®Г±ГўГҐГ№ГҐГ­ГЁГҐ\nF - Г‘ГўГҐГІ ГЁГ§ ГЄГ Г¬ГҐГ°Г»\nG - Г¤ГўГЁГЈГ ГІГј Г±ГўГҐГІ ГЇГ® ГЈГ®Г°ГЁГ§Г®Г­ГІГ Г«ГЁ\nG+Г‹ГЉГЊ Г¤ГўГЁГЈГ ГІГј Г±ГўГҐГІ ГЇГ® ГўГҐГ°ГІГҐГЄГ Г«ГЁ",0,0,0);
 
 	
 }
@@ -502,27 +486,27 @@ void Render(OpenGL *ogl)
 	if (lightMode)
 		glEnable(GL_LIGHTING);
 
-	//альфаналожение
+	//Г Г«ГјГґГ Г­Г Г«Г®Г¦ГҐГ­ГЁГҐ
 	//glEnable(GL_BLEND);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	//настройка материала
+	//Г­Г Г±ГІГ°Г®Г©ГЄГ  Г¬Г ГІГҐГ°ГЁГ Г«Г 
 	GLfloat amb[] = { 0.5, 0.5, 0.5, 1. };
 	GLfloat dif[] = { 0.4, 0.6, 0.5, 1. };
 	GLfloat spec[] = { 0.9, 0.8, 0.3, 1. };
 	GLfloat sh = 0.8f * 256;
 
-	//фоновая
+	//ГґГ®Г­Г®ГўГ Гї
 	glMaterialfv(GL_FRONT, GL_AMBIENT, amb);
-	//дифузная
+	//Г¤ГЁГґГіГ§Г­Г Гї
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, dif);
-	//зеркальная
+	//Г§ГҐГ°ГЄГ Г«ГјГ­Г Гї
 	glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
-	//размер блика
+	//Г°Г Г§Г¬ГҐГ° ГЎГ«ГЁГЄГ 
 	glMaterialf(GL_FRONT, GL_SHININESS, sh);
 
 	//===================================
-	//Прогать тут  
+	//ГЏГ°Г®ГЈГ ГІГј ГІГіГІ  
 
 
 	//
@@ -540,7 +524,7 @@ void Render(OpenGL *ogl)
 	if (plane3_X > 30)
 		plane3_X -= 72;
 
-	Shader::DontUseShaders();	//ландшафт движущийся
+	Shader::DontUseShaders();	//Г«Г Г­Г¤ГёГ ГґГІ Г¤ГўГЁГ¦ГіГ№ГЁГ©Г±Гї
 	//glActiveTexture(GL_TEXTURE1);
 	
 
@@ -562,13 +546,13 @@ void Render(OpenGL *ogl)
 	//glActiveTexture(GL_TEXTURE0);
 	
 
-	//машина
+	//Г¬Г ГёГЁГ­Г 
 
 	s[1].UseShader();
 	int l = glGetUniformLocationARB(s[1].program,"tex");
 	glUniform1iARB(l, 0); 
 	int location2 = glGetUniformLocationARB(s[1].program, "light_pos");
-	//Шаг 2 - передаем ей значение
+	//ГГ ГЈ 2 - ГЇГҐГ°ГҐГ¤Г ГҐГ¬ ГҐГ© Г§Г­Г Г·ГҐГ­ГЁГҐ
 	glUniform3fARB(location2, light.pos.X(), light.pos.Y(), light.pos.Z());
 
 	location2 = glGetUniformLocationARB(s[1].program, "Ia");
@@ -592,7 +576,7 @@ void Render(OpenGL *ogl)
 
 	location2 = glGetUniformLocationARB(s[1].program, "camera");
 	glUniform3fARB(location2, camera.pos.X(), camera.pos.Y(), camera.pos.Z());
-	    //так как когда мы загружали текстуру грузили на GL_TEXTURE0
+	    //ГІГ ГЄ ГЄГ ГЄ ГЄГ®ГЈГ¤Г  Г¬Г» Г§Г ГЈГ°ГіГ¦Г Г«ГЁ ГІГҐГЄГ±ГІГіГ°Гі ГЈГ°ГіГ§ГЁГ«ГЁ Г­Г  GL_TEXTURE0
 	glPushMatrix();
 	//glRotated(-90, 0, 0, 1);
 	carTexture.bindTexture();
@@ -606,7 +590,7 @@ void Render(OpenGL *ogl)
 	
 	
 
-	//////Рисование фрактала
+	//////ГђГЁГ±Г®ГўГ Г­ГЁГҐ ГґГ°Г ГЄГІГ Г«Г 
 
 	
 	/*
@@ -638,7 +622,7 @@ void Render(OpenGL *ogl)
 	*/
 	
 	
-	//////Овал Кассини
+	//////ГЋГўГ Г« ГЉГ Г±Г±ГЁГ­ГЁ
 	
 	/*
 	{
@@ -672,12 +656,12 @@ void Render(OpenGL *ogl)
 
 	
 	
-}   //конец тела функции
+}   //ГЄГ®Г­ГҐГ¶ ГІГҐГ«Г  ГґГіГ­ГЄГ¶ГЁГЁ
 
 
 bool gui_init = false;
 
-//рисует интерфейс, вызывется после обычного рендера
+//Г°ГЁГ±ГіГҐГІ ГЁГ­ГІГҐГ°ГґГҐГ©Г±, ГўГ»Г§Г»ГўГҐГІГ±Гї ГЇГ®Г±Г«ГҐ Г®ГЎГ»Г·Г­Г®ГЈГ® Г°ГҐГ­Г¤ГҐГ°Г 
 void RenderGUI(OpenGL *ogl)
 {
 	
