@@ -326,18 +326,7 @@ void keyDownEvent(OpenGL *ogl, int key)
 		light.pos = camera.pos;
 	}
 
-	if (key == 'S')
-	{
-		frac.LoadShaderFromFile();
-		frac.Compile();
-
-		s[0].LoadShaderFromFile();
-		s[0].Compile();
-
-		cassini.LoadShaderFromFile();
-		cassini.Compile();
-	}
-
+	
 	if (key == 'Q')
 		Time = 0;
 }
@@ -414,7 +403,7 @@ void initRender(OpenGL *ogl)
 
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
 
-	/*
+
 	//texture1.loadTextureFromFile("textures\\texture.bmp"); 
 
 	
