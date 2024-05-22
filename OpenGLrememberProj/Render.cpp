@@ -33,7 +33,6 @@ bool lightMode = true;
 #define PUSH glPushMatrix()
 
 
-ObjFile *model;
 
 Texture texture1;
 Texture sTex;
@@ -92,43 +91,6 @@ public:
 }  camera;   //ñîçäàåì îáúåêò êàìåðû
 
 
-//êëàññ íåäîäåëàí!
-class WASDcamera :public CustomCamera
-{
-public:
-		
-	float camSpeed;
-
-	WASDcamera()
-	{
-		camSpeed = 0.4;
-		pos.setCoords(5, 5, 5);
-		lookPoint.setCoords(0, 0, 0);
-		normal.setCoords(0, 0, 1);
-	}
-
-	virtual void SetUpCamera()
-	{
-
-		if (OpenGL::isKeyPressed('W'))
-		{
-			Vector3 forward = (lookPoint - pos).normolize()*camSpeed;
-			pos = pos + forward;
-			lookPoint = lookPoint + forward;
-			
-		}
-		if (OpenGL::isKeyPressed('S'))
-		{
-			Vector3 forward = (lookPoint - pos).normolize()*(-camSpeed);
-			pos = pos + forward;
-			lookPoint = lookPoint + forward;
-			
-		}
-
-		LookAt();
-	}
-
-} WASDcam;
 
 
 //Êëàññ äëÿ íàñòðîéêè ñâåòà
@@ -177,14 +139,7 @@ public:
 			c.scale = c.scale*1.5;
 			c.Show();
 		}
-		/*
-		if (f1)
-			glEnable(GL_LIGHTING);
-		if (f2)
-			glEnable(GL_TEXTURE_2D);
-		if (f3)
-			glEnable(GL_DEPTH_TEST);
-			*/
+		
 	}
 
 	void SetUpLight()
@@ -323,27 +278,6 @@ void keyDownEvent(OpenGL *ogl, int key)
 void keyUpEvent(OpenGL *ogl, int key)
 {
 
-}
-
-
-void DrawQuad()
-{
-	double A[] = { 0,0 };
-	double B[] = { 1,0 };
-	double C[] = { 1,1 };
-	double D[] = { 0,1 };
-	glBegin(GL_QUADS);
-	glColor3d(.5, 0, 0);
-	glNormal3d(0, 0, 1);
-	glTexCoord2d(0, 0);
-	glVertex2dv(A);
-	glTexCoord2d(1, 0);
-	glVertex2dv(B);
-	glTexCoord2d(1, 1);
-	glVertex2dv(C);
-	glTexCoord2d(0, 1);
-	glVertex2dv(D);
-	glEnd();
 }
 
 
@@ -501,9 +435,7 @@ void Render(OpenGL *ogl)
 	if (plane3_X > 30)
 		plane3_X -= 72;
 
-	Shader::DontUseShaders();	//ëàíäøàôò äâèæóùèéñÿ
-	//glActiveTexture(GL_TEXTURE1);
-	
+	Shader::DontUseShaders();	
 
 	sythwave.bindTexture();
 	glPushMatrix();
@@ -555,7 +487,6 @@ void Render(OpenGL *ogl)
 	glUniform3fARB(location2, camera.pos.X(), camera.pos.Y(), camera.pos.Z());
 	    //òàê êàê êîãäà ìû çàãðóæàëè òåêñòóðó ãðóçèëè íà GL_TEXTURE0
 	glPushMatrix();
-	//glRotated(-90, 0, 0, 1);
 	carTexture.bindTexture();
 
 	
