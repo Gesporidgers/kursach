@@ -223,6 +223,8 @@ float zoom=1;
 float Time = 0;
 int tick_o = 0;
 int tick_n = 0;
+double delta = 0.05;
+bool stop = false;
 
 //îáðàáîò÷èê äâèæåíèÿ ìûøè
 void mouseEvent(OpenGL *ogl, int mX, int mY)
@@ -328,7 +330,12 @@ void keyDownEvent(OpenGL *ogl, int key)
 
 	
 	if (key == 'Q')
-		Time = 0;
+	{
+		delta = stop ? 0 : 0.05;
+		stop = !stop;
+	}
+
+
 }
 
 void keyUpEvent(OpenGL *ogl, int key)
@@ -452,9 +459,10 @@ void initRender(OpenGL *ogl)
 double  plane1_X = 0, plane2_X = -24, plane3_X = -48;
 
 
+
+
 void Render(OpenGL *ogl)
 {   
-	
 	tick_o = tick_n;
 	tick_n = GetTickCount();
 	Time += (tick_n - tick_o) / 1000.0;
@@ -502,9 +510,9 @@ void Render(OpenGL *ogl)
 
 
 	
-	plane1_X += 0.05;
-	plane2_X += 0.05;
-	plane3_X += 0.05;
+	plane1_X += delta;
+	plane2_X += delta;
+	plane3_X += delta;
 
 	if (plane1_X > 30)
 		plane1_X -= 72;
@@ -574,15 +582,6 @@ void Render(OpenGL *ogl)
 
 	car.DrawObj();
 	glPopMatrix();
-
-	
-	
-	
-
-	
-	
-	
-	
 
 	
 	Shader::DontUseShaders();
