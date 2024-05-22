@@ -304,6 +304,7 @@ void mouseWheelEvent(OpenGL *ogl, int delta)
 //îáðàáîò÷èê íàæàòèÿ êíîïîê êëàâèàòóðû
 void keyDownEvent(OpenGL *ogl, int key)
 {	   
+	   
 
 	if (key == 'R')
 	{
