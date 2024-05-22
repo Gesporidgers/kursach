@@ -227,6 +227,7 @@ void OpenGL::resize(int w, int h)
 	aspect = (GLdouble)width / (GLdouble)height;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	gluPerspective(45., (GLdouble)width/(GLdouble)height, .1, 1000.);
 
 	if (resizeFunc != nullptr)
 		resizeFunc(this, w, h);
@@ -285,7 +286,7 @@ void OpenGL::init(void)
 	g_hRC = wglCreateContext(g_hDC);
 	wglMakeCurrent(g_hDC, g_hRC);
 
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
 
 

@@ -362,6 +362,8 @@ ObjFile car,plane;
 
 Texture carTexture,sythwave;
 
+Vector3 stars[1000];
+
 //âûïîëíÿåòñÿ ïåðåä ïåðâûì ðåíäåðîì
 void initRender(OpenGL *ogl)
 {
@@ -377,6 +379,7 @@ void initRender(OpenGL *ogl)
 	//âêëþ÷àåì òåêñòóðû
 	glEnable(GL_TEXTURE_2D);
 	
+	glClearColor(0., 0., 0.05,1.);
 	
 
 
@@ -433,7 +436,15 @@ void initRender(OpenGL *ogl)
 
 	rec.setSize(300, 100);
 	rec.setPosition(10, ogl->getHeight() - 100-10);
-	rec.setText("T - âêë/âûêë òåêñòóð\nL - âêë/âûêë îñâåùåíèå\nF - Ñâåò èç êàìåðû\nG - äâèãàòü ñâåò ïî ãîðèçîíòàëè\nG+ËÊÌ äâèãàòü ñâåò ïî âåðòåêàëè",0,0,0);
+	rec.setText("G - перемещение источника света\nG+ЛКМ Высота источника света",0,0,0);
+
+
+	for (int i = 0; i < 1000; i++) {
+		float theta = ((float)rand() / RAND_MAX) * 2 * 3.14159f;
+		float phi = acos(1 - 2 * ((float)rand() / RAND_MAX));
+		stars[i].setCoords(50 * sin(phi) * cos(theta), 50 * sin(phi) * sin(theta), 50 * cos(phi));
+		
+	}
 
 	
 }
@@ -575,8 +586,12 @@ void Render(OpenGL *ogl)
 
 	
 	Shader::DontUseShaders();
-
-	
+	glPointSize(1.5);
+	glColor3d(0.7,0.7,1.);
+	glBegin(GL_POINTS);
+	for (int i = 0; i < 1000; i++)
+		glVertex3dv(stars[i].toArray());
+	glEnd();
 	
 }   //êîíåö òåëà ôóíêöèè
 
