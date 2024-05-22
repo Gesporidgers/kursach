@@ -303,17 +303,7 @@ void mouseWheelEvent(OpenGL *ogl, int delta)
 
 //îáðàáîò÷èê íàæàòèÿ êíîïîê êëàâèàòóðû
 void keyDownEvent(OpenGL *ogl, int key)
-{	   
-	   
-
-	if (key == 'R')
-	{
-		camera.fi1 = 1;
-		camera.fi2 = 1;
-		camera.camDist = 15;
-
-		light.pos = Vector3(1, 1, 3);
-	}
+{	  
 
 	if (key == 'F')
 	{
