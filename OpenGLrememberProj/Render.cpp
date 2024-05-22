@@ -303,16 +303,7 @@ void mouseWheelEvent(OpenGL *ogl, int delta)
 
 //îáðàáîò÷èê íàæàòèÿ êíîïîê êëàâèàòóðû
 void keyDownEvent(OpenGL *ogl, int key)
-{
-	if (key == 'L')
-	{
-		lightMode = !lightMode;
-	}
-
-	if (key == 'T')
-	{
-		textureMode = !textureMode;
-	}	   
+{	   
 
 	if (key == 'R')
 	{
@@ -441,9 +432,7 @@ void initRender(OpenGL *ogl)
 	tick_n = GetTickCount();
 	tick_o = tick_n;
 
-	rec.setSize(300, 100);
-	rec.setPosition(10, ogl->getHeight() - 100-10);
-	rec.setText("G - перемещение источника света\nG+ЛКМ Высота источника света",0,0,0);
+	
 
 
 	for (int i = 0; i < 1000; i++) {
